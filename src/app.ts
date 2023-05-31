@@ -21,8 +21,8 @@ const messageEl = document.querySelector<HTMLElement>('#message')!
 const resetBtnEl = document.querySelector<HTMLButtonElement>('button')!
 
 /*----------------------------- Event Listeners -----------------------------*/
-document.querySelector('.board')?.addEventListener('click', handleClick)
-resetBtnEl.addEventListener('click', init)
+document.querySelector<HTMLElement>('.board')?.addEventListener('click', handleClick)!
+resetBtnEl.addEventListener('click', init)!
 /*-------------------------------- Functions --------------------------------*/
 
 init()
@@ -35,13 +35,13 @@ function init() {
   render()
 }
 
-function placePiece(idx) {
+function placePiece(idx: number) {
   board[idx] = turn
 }
 
-function handleClick(evt) {
+function handleClick(evt: MouseEvent): void {
   console.log(evt.target.id)
-  const sqIdx = parseInt(evt.target.id.replace('sq', ''))
+  const sqIdx = parseInt((evt.target as HTMLElement).id.replace('sq', ''))
 
   if (isNaN(sqIdx) || board[sqIdx] || winner) return
   placePiece(sqIdx)
@@ -52,7 +52,7 @@ function handleClick(evt) {
 }
 
 function checkForTie() {
-  if (board.includes(null)) return
+  if (board.includes(0)) return
   tie = true
 }
 

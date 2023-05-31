@@ -43,7 +43,7 @@ function handleClick(evt) {
     render();
 }
 function checkForTie() {
-    if (board.includes(null))
+    if (board.includes(0))
         return;
     tie = true;
 }
